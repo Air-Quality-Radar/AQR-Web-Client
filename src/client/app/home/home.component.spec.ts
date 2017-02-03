@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { HomeComponent } from './home.component';
 import { NameListService } from '../shared/name-list/name-list.service';
+import { AlertModule } from 'ng2-bootstrap/alert';
 
 export function main() {
   describe('Home component', () => {
@@ -15,7 +16,7 @@ export function main() {
     beforeEach(() => {
 
       TestBed.configureTestingModule({
-        imports: [FormsModule],
+        imports: [FormsModule, AlertModule.forRoot()],
         declarations: [HomeComponent],
         providers: [
           { provide: NameListService, useValue: new MockNameListService() }

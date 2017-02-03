@@ -14,7 +14,8 @@ import {
 } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { ToolbarComponent } from './shared/toolbar/toolbar.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { AlertModule } from 'ng2-bootstrap/alert';
 
 export function main() {
 
@@ -25,8 +26,8 @@ export function main() {
     ];
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [FormsModule, RouterTestingModule.withRoutes(config)],
-        declarations: [TestComponent, ToolbarComponent, AppComponent,
+        imports: [FormsModule, RouterTestingModule.withRoutes(config), AlertModule.forRoot()],
+        declarations: [TestComponent, NavbarComponent, AppComponent,
           HomeComponent],
         providers: [
           { provide: APP_BASE_HREF, useValue: '/' }
