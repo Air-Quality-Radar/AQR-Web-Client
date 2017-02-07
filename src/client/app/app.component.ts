@@ -15,3 +15,4 @@ export class AppComponent {
     console.log('Environment config', Config);
   }
 }
+

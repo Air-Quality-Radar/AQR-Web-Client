@@ -14,7 +14,7 @@ import {
 } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { AlertModule } from 'ng2-bootstrap/alert';
 
 export function main() {

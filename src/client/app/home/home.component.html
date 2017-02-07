@@ -1,18 +1,9 @@
-<alert type="success">
-  <strong>Yay!</strong> Bootstrap works :)
-</alert>
+<div class = "row">
+    <div class = "col-md-8">
+    <sd-search></sd-search>
+    </div>
+    <div class = "col-md-4">
+    world
+    </div>
+</div>
 
-<p>Howdy! Here's a list of awesome computer scientists. Do you know any others? Add to the list yourself.</p>
-
-<form (submit)="addName()">
-  <div class="input-group">
-    <input [(ngModel)]="newName" type="text" name="newName" placeholder="Awesome Computer Scientist" class="form-control">
-    <span class="input-group-btn">
-      <button type="submit" class="btn btn-secondary">Add</button>
-    </span>
-  </div>
-</form>
-
-<ul>
-  <li *ngFor="let name of names">{{name}}</li>
-</ul>
