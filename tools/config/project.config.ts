@@ -38,7 +38,7 @@ export class ProjectConfig extends SeedConfig {
 
     // Add packages (e.g. ng2-translate)
     let additionalPackages: ExtendPackages[] = [
-      // required for dev build 
+      // required for dev build
       {
         name:'ng2-bootstrap',
         path:'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.min.js'
@@ -50,7 +50,7 @@ export class ProjectConfig extends SeedConfig {
         path:'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.min.js'
       },
 
-      // mandatory dependency for ng2-bootstrap datepicker 
+      // mandatory dependency for ng2-bootstrap datepicker
       {
         name:'moment',
         path:'node_modules/moment',

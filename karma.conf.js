@@ -103,7 +103,7 @@ module.exports = function (config) {
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: [
-      'Chrome'
+      'PhantomJS', 'Chrome'
     ],
 
 
@@ -124,15 +124,9 @@ module.exports = function (config) {
     }
   });
 
-  if (process.env.APPVEYOR) {
-    config.browsers = ['IE'];
+  if (process.env.GITLABCI) {
+    config.browsers = ['PhantomJS'];
     config.singleRun = true;
     config.browserNoActivityTimeout = 90000; // Note: default value (10000) is not enough
-  }
-
-  if (process.env.TRAVIS || process.env.CIRCLECI) {
-    config.browsers = ['Chrome_travis_ci'];
-    config.singleRun = true;
-    config.browserNoActivityTimeout = 90000;
   }
 };
