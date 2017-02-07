@@ -54,6 +54,10 @@ export function main() {
           });
 
       }));
+
+      it('passes a failing test', function() {
+        expect(false).toBeTruthy();
+      });
   });
 }
 
