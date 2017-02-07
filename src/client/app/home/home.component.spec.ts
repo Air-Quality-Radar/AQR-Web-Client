@@ -14,7 +14,6 @@ export function main() {
   describe('Home component', () => {
 
     beforeEach(() => {
-
       TestBed.configureTestingModule({
         imports: [FormsModule, AlertModule.forRoot()],
         declarations: [HomeComponent],
@@ -52,12 +51,8 @@ export function main() {
             expect(homeDOMEl.querySelectorAll('li').length).toEqual(4);
             expect(homeDOMEl.querySelectorAll('li')[3].textContent).toEqual('Minko');
           });
-
       }));
 
-      it('passes a failing test', function() {
-        expect(false).toBeTruthy();
-      });
   });
 }
 
