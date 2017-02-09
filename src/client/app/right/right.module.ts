@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { InfoTableComponent } from './infoTable/infoTable.component';
+import { InfoTableComponent } from './info-table/info-table.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule, FormsModule],
