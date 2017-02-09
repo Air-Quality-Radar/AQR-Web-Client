@@ -2,17 +2,18 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { SearchComponent } from './search/search.component';
+
+import { InfoTableComponent } from './infoTable/infoTable.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule, FormsModule],
-  declarations: [SearchComponent],
-  exports: [SearchComponent, CommonModule, FormsModule, RouterModule]
+  declarations: [InfoTableComponent],
+  exports: [InfoTableComponent, CommonModule, FormsModule, RouterModule]
 })
-export class LeftModule {
+export class RightModule {
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: LeftModule,
+      ngModule: RightModule,
       providers: []
     };
   }

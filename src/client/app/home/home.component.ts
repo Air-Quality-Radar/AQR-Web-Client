@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NameListService } from '../shared/name-list/name-list.service';
 
+import { NouisliderModule } from 'ng2-nouislider';
+
 /**
  * This class represents the lazy loaded HomeComponent.
  */
