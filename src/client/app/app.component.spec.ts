@@ -1,21 +1,15 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { TestBed } from '@angular/core/testing';
 import { APP_BASE_HREF } from '@angular/common';
 
-import {
-  async
-} from '@angular/core/testing';
-import {
-  Route
-} from '@angular/router';
-import {
-  RouterTestingModule
-} from '@angular/router/testing';
+import { async } from '@angular/core/testing';
+import { Route } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { AlertModule } from 'ng2-bootstrap/alert';
+import { SearchComponent } from './left/search/search.component';
+import { InfoTableComponent } from './right/info-table/info-table.component';
 
 export function main() {
 
@@ -26,9 +20,8 @@ export function main() {
     ];
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [FormsModule, RouterTestingModule.withRoutes(config), AlertModule.forRoot()],
-        declarations: [TestComponent, NavbarComponent, AppComponent,
-          HomeComponent],
+        imports: [RouterTestingModule.withRoutes(config)],
+        declarations: [TestComponent, NavbarComponent, AppComponent, HomeComponent, SearchComponent, InfoTableComponent],
         providers: [
           { provide: APP_BASE_HREF, useValue: '/' }
         ]
