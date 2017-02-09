@@ -40,24 +40,29 @@ export class ProjectConfig extends SeedConfig {
     let additionalPackages: ExtendPackages[] = [
       // required for dev build
       {
-        name:'ng2-bootstrap',
-        path:'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.min.js'
+        name: 'ng2-bootstrap',
+        path: 'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.min.js'
       },
 
       // required for prod build
       {
-        name:'ng2-bootstrap/*',
-        path:'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.min.js'
+        name: 'ng2-bootstrap/*',
+        path: 'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.min.js'
       },
 
       // mandatory dependency for ng2-bootstrap datepicker
       {
-        name:'moment',
-        path:'node_modules/moment',
+        name: 'moment',
+        path: 'node_modules/moment',
         packageMeta:{
           main: 'moment.js',
           defaultExtension: 'js'
         }
+      },
+
+      {
+        name: 'angular2-google-maps/*',
+        path: 'node_modules/angular2-google-maps/core/core.umd.js'
       }
     ];
 
