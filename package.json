@@ -61,7 +61,6 @@
     "@types/node": "^6.0.45",
     "@types/rimraf": "0.0.28",
     "@types/run-sequence": "^0.0.28",
-    "@types/selenium-webdriver": "^2.53.39",
     "@types/systemjs": "^0.19.31",
     "@types/yargs": "^6.5.0",
     "@types/zone.js": "^0.0.27",
