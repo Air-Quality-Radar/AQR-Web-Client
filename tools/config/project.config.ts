@@ -50,6 +50,24 @@ export class ProjectConfig extends SeedConfig {
         path:'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.min.js'
       },
 
+      //ng2-chart for dev
+      {
+        name: 'ng2-charts',
+        path: 'node_modules/ng2-charts/ng2-charts.js'
+      },
+
+      //ng2-chart for prod build
+      {
+        name: 'ng2-charts/*',
+        path: 'node_modules/ng2-charts/ng2-charts.js'
+      },
+
+      //chart
+      {
+        name: 'Chart.js',
+        path: 'node_modules/chart.js/dist/Chart.min.js'
+      },
+
       // mandatory dependency for ng2-bootstrap datepicker
       {
         name:'moment',
