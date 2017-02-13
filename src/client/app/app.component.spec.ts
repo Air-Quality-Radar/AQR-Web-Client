@@ -14,6 +14,7 @@ import { SearchComponent } from './left/search/search.component';
 import { InfoTableComponent } from './right/info-table/info-table.component';
 import { MapComponent } from './left/map/map.component';
 import { GoogleMapsAPIConfig } from './left/map/map-config';
+import { OverlayComponent } from './left/overlay/overlay.component';
 
 export function main() {
 
@@ -27,7 +28,8 @@ export function main() {
         imports: [RouterTestingModule.withRoutes(config), AgmCoreModule.forRoot({
           apiKey: GoogleMapsAPIConfig.apiKey
         })],
-        declarations: [TestComponent, NavbarComponent, AppComponent, HomeComponent, SearchComponent, InfoTableComponent, MapComponent],
+        declarations: [TestComponent, NavbarComponent, AppComponent, HomeComponent, SearchComponent,
+                       InfoTableComponent, MapComponent, OverlayComponent],
         providers: [
           { provide: APP_BASE_HREF, useValue: '/' }
         ]
