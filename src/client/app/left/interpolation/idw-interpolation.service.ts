@@ -2,7 +2,7 @@ import { Point } from './point';
 import { InterpolationService, Sample } from './interpolation.service';
 
 export class IdwInterpolationService implements InterpolationService {
-    private samples: Sample[];
+    private samples: Sample[] = [];
 
     public addSample(sample: Sample): void {
         this.samples.push(sample);
