@@ -1,4 +1,7 @@
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Point } from '../interpolation/point';
+import { InterpolationService, Sample } from '../interpolation/interpolation.service';
+import { IdwInterpolationService } from '../interpolation/idw-interpolation.service';
 
 /**
  * This class represents the map component.
@@ -11,25 +14,55 @@ import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 })
 
 export class OverlayComponent implements AfterViewInit {
-    @ViewChild('mapCanvas') canvasRef : ElementRef;
-    canvas: HTMLCanvasElement;
+    @ViewChild('mapCanvas') private canvasRef : ElementRef;
+    private canvas: HTMLCanvasElement;
+
+    private interpolator: InterpolationService;
+
+    private interpolationColor = [255, 255, 255, 255];
+
+    public constructor() {
+        this.interpolator = new IdwInterpolationService();
+
+        // Add sample data
+        let sample = new Sample();
+        sample.location = new Point(0.1, 0.5);
+        sample.value = 1;
+        let sample2 = new Sample();
+        sample2.location = new Point(0.9, 0.5);
+        sample2.value = 0.5;
+        this.interpolator.addSample(sample);
+        this.interpolator.addSample(sample2);
+    }
 
     public ngAfterViewInit(): void {
         this.canvas = <HTMLCanvasElement>this.canvasRef.nativeElement;
-        this.drawRandomColors();
+        this.draw();
     }
 
-    private drawRandomColors(): void {
+    private draw(): void {
         let context = this.canvas.getContext('2d');
         let imageData = context.createImageData(this.canvas.width, this.canvas.height);
 
-        for (var i = 0; i < imageData.data.length; i += 4) {
-            imageData.data[i] = Math.random()*255; // red
-            imageData.data[i+1] = Math.random()*255; // green
-            imageData.data[i+2] = Math.random()*255; // blue
-            imageData.data[i+3] = 100;
-        }
+        this.drawOnImageData(imageData);
 
         context.putImageData(imageData, 0, 0);
+    }
+
+    private drawOnImageData(imageData: ImageData) {
+        for (var i = 0; i < imageData.data.length; i += 4) {
+            let x = (i % (imageData.width * 4)) / 4;
+            let y = Math.floor(i / (imageData.width * 4));
+
+            let interpolationLocation = new Point(x / imageData.width, y / imageData.height);
+
+            let value = this.interpolator.valueAtLocation(interpolationLocation);
+
+            // Set the RGBA values
+            imageData.data[i] = value * this.interpolationColor[0];
+            imageData.data[i+1] = value * this.interpolationColor[1];
+            imageData.data[i+2] = value * this.interpolationColor[2];
+            imageData.data[i+3] = this.interpolationColor[3];
+        }
     }
 }
