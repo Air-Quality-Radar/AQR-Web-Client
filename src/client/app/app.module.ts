@@ -7,9 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
-  imports: [BrowserModule, HttpModule, AppRoutingModule, HomeModule, SharedModule.forRoot()],
+  imports: [ChartsModule, BrowserModule, HttpModule, AppRoutingModule, HomeModule, SharedModule.forRoot()],
   declarations: [AppComponent],
   providers: [{
     provide: APP_BASE_HREF,

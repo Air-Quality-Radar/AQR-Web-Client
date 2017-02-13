@@ -10,7 +10,7 @@ import { ChartComponent } from './chart/chart.component';
 @NgModule({
   imports: [CommonModule, RouterModule, FormsModule, ChartsModule],
   declarations: [InfoTableComponent, ChartComponent],
-  exports: [InfoTableComponent, ChartComponent, CommonModule, FormsModule, RouterModule]
+  exports: [InfoTableComponent, ChartComponent]
 })
 export class RightModule {
   static forRoot(): ModuleWithProviders {

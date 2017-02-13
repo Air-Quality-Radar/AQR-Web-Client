@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SearchComponent } from './left/search/search.component';
 import { InfoTableComponent } from './right/info-table/info-table.component';
+import { ChartComponent } from './right/chart/chart.component';
+import { ChartsModule } from 'ng2-charts/';
 
 export function main() {
 
@@ -21,7 +23,7 @@ export function main() {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [RouterTestingModule.withRoutes(config)],
-        declarations: [TestComponent, NavbarComponent, AppComponent, HomeComponent, SearchComponent, InfoTableComponent],
+        declarations: [ChartsModule, ChartComponent, TestComponent, NavbarComponent, AppComponent, HomeComponent, SearchComponent, InfoTableComponent],
         providers: [
           { provide: APP_BASE_HREF, useValue: '/' }
         ]
