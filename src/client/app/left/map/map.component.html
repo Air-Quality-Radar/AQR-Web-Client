@@ -1,7 +1,7 @@
 <sebm-google-map
-    [latitude]="lat"
-    [longitude]="lng"
-    [zoom]="zoom">
+  [latitude]="lat"
+  [longitude]="lng"
+  [zoom]="zoom">
 
   <sebm-google-map-marker
     *ngFor="let source of dataSourceLocations"
@@ -10,3 +10,9 @@
   </sebm-google-map-marker>
 
 </sebm-google-map>
+
+<canvas
+  id="map-overlay"
+  width="500"
+  height="300">
+</canvas>
