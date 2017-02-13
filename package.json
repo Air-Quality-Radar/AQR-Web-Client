@@ -128,7 +128,7 @@
     "traceur": "^0.0.111",
     "ts-node": "^2.0.0",
     "tslint": "^4.3.0",
-    "typescript": "~2.0.9",
+    "typescript": "^2.1.6",
     "walk": "^2.3.9",
     "yargs": "^6.0.0"
   },
@@ -141,6 +141,7 @@
     "@angular/platform-browser": "~2.4.0",
     "@angular/platform-browser-dynamic": "~2.4.0",
     "@angular/router": "~3.4.1",
+    "angular2-google-maps": "^0.17.0",
     "bootstrap": "^3.3.7",
     "chart.js": "^2.5.0",
     "core-js": "^2.4.1",
