@@ -29,7 +29,8 @@ export function main() {
         imports: [ChartsModule, RouterTestingModule.withRoutes(config), AgmCoreModule.forRoot({
         apiKey: GoogleMapsAPIConfig.apiKey
       })],
-        declarations: [ChartComponent, TestComponent, NavbarComponent, AppComponent, HomeComponent, SearchComponent, InfoTableComponent, MapComponent],
+        declarations: [ChartComponent, TestComponent, NavbarComponent, AppComponent,
+          HomeComponent, SearchComponent, InfoTableComponent, MapComponent],
         providers: [
           { provide: APP_BASE_HREF, useValue: '/' }
         ]
@@ -57,6 +58,3 @@ export function main() {
 
 class TestComponent {
 }
-
-
-
