@@ -12,13 +12,10 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SearchComponent } from './left/search/search.component';
 import { InfoTableComponent } from './right/info-table/info-table.component';
-<<<<<<< HEAD
 import { ChartComponent } from './right/chart/chart.component';
 import { ChartsModule } from 'ng2-charts/';
-=======
 import { MapComponent } from './left/map/map.component';
 import { GoogleMapsAPIConfig } from './left/map/map-config';
->>>>>>> dc56d5ce20185de364ed245344ecdc82da5af89d
 
 export function main() {
 
@@ -29,15 +26,10 @@ export function main() {
     ];
     beforeEach(() => {
       TestBed.configureTestingModule({
-<<<<<<< HEAD
-        imports: [RouterTestingModule.withRoutes(config)],
-        declarations: [ChartsModule, ChartComponent, TestComponent, NavbarComponent, AppComponent, HomeComponent, SearchComponent, InfoTableComponent],
-=======
         imports: [RouterTestingModule.withRoutes(config), AgmCoreModule.forRoot({
-          apiKey: GoogleMapsAPIConfig.apiKey
-        })],
-        declarations: [TestComponent, NavbarComponent, AppComponent, HomeComponent, SearchComponent, InfoTableComponent, MapComponent],
->>>>>>> dc56d5ce20185de364ed245344ecdc82da5af89d
+        apiKey: GoogleMapsAPIConfig.apiKey
+      })],
+        declarations: [ChartsModule, ChartComponent, TestComponent, NavbarComponent, AppComponent, HomeComponent, SearchComponent, InfoTableComponent, MapComponent],
         providers: [
           { provide: APP_BASE_HREF, useValue: '/' }
         ]
