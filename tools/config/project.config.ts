@@ -24,6 +24,7 @@ export class ProjectConfig extends SeedConfig {
       // {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
       // {src: 'lodash/lodash.min.js', inject: 'libs'},
       // { src: 'bootstrap/dist/js/bootstrap.min.js', inject: 'libs' },
+      { src: 'chart.js/dist/Chart.min.js', inject: 'libs' },
       { src: 'bootstrap/dist/css/bootstrap.min.css', inject: true }, // inject into css section
       { src: 'bootstrap/dist/css/bootstrap-theme.min.css', inject: true }, // inject into css section
       { src: 'bootstrap/dist/css/bootstrap-theme.min.css.map', inject: true }, // inject into css section
@@ -48,6 +49,19 @@ export class ProjectConfig extends SeedConfig {
       {
         name: 'ng2-bootstrap/*',
         path: 'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.min.js'
+      },
+
+      //ng2-chart for prod build
+      {
+        name: 'ng2-charts/*',
+//        path: 'https://npmcdn.com/ng2-charts@1.1.0'
+        path: 'node_modules/ng2-charts/bundles/ng2-charts.umd.js'
+      },
+
+      //chart
+      {
+        name: 'Chart.js',
+        path: 'node_modules/chart.js/dist/Chart.min.js'
       },
 
       // mandatory dependency for ng2-bootstrap datepicker
