@@ -1,13 +1,9 @@
 :host {
   display: block;
-  padding: 16px;
+  padding: 2em;
 }
 
-input {
-  width: 250px;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0 0 0 8px;
+#map-container {
+  height: 500px;
+  position: relative;
 }

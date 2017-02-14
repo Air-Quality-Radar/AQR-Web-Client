@@ -19,7 +19,7 @@ export class OverlayComponent implements AfterViewInit {
 
     private interpolator: InterpolationService;
 
-    private interpolationColor = [255, 255, 255, 255];
+    private interpolationColor = [255, 0, 0, 100];
 
     public constructor() {
         this.interpolator = new IdwInterpolationService();
@@ -58,7 +58,7 @@ export class OverlayComponent implements AfterViewInit {
             imageData.data[i] = value * this.interpolationColor[0];
             imageData.data[i+1] = value * this.interpolationColor[1];
             imageData.data[i+2] = value * this.interpolationColor[2];
-            imageData.data[i+3] = this.interpolationColor[3];
+            imageData.data[i+3] = value * this.interpolationColor[3];
         }
     }
 }
