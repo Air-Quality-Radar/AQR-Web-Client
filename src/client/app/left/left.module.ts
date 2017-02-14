@@ -6,10 +6,11 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 import { SearchComponent } from './search/search.component';
 import { MapComponent } from './map/map.component';
 import { GoogleMapsAPIConfig } from './map/map-config';
+import { OverlayComponent } from './overlay/overlay.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule, AgmCoreModule.forRoot({ apiKey: GoogleMapsAPIConfig.apiKey })],
-  declarations: [SearchComponent, MapComponent],
-  exports: [SearchComponent, MapComponent, CommonModule, RouterModule]
+  declarations: [SearchComponent, MapComponent, OverlayComponent],
+  exports: [SearchComponent, MapComponent, OverlayComponent, CommonModule, RouterModule]
 })
 export class LeftModule { }

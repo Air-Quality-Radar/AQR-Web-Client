@@ -16,6 +16,7 @@ import { InfoTableComponent } from './right/info-table/info-table.component';
 import { ChartComponent } from './right/chart/chart.component';
 import { MapComponent } from './left/map/map.component';
 import { GoogleMapsAPIConfig } from './left/map/map-config';
+import { OverlayComponent } from './left/overlay/overlay.component';
 
 export function main() {
 
@@ -30,7 +31,7 @@ export function main() {
         apiKey: GoogleMapsAPIConfig.apiKey
       })],
         declarations: [ChartComponent, TestComponent, NavbarComponent, AppComponent,
-          HomeComponent, SearchComponent, InfoTableComponent, MapComponent],
+          HomeComponent, SearchComponent, InfoTableComponent, MapComponent， OverlayComponent],
         providers: [
           { provide: APP_BASE_HREF, useValue: '/' }
         ]
