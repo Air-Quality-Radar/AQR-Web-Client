@@ -25,12 +25,8 @@ export class OverlayComponent implements AfterViewInit {
         this.interpolator = new IdwInterpolationService();
 
         // Add sample data
-        let sample = new Sample();
-        sample.location = new Point(0.1, 0.5);
-        sample.value = 1;
-        let sample2 = new Sample();
-        sample2.location = new Point(0.9, 0.5);
-        sample2.value = 0.5;
+        let sample = new Sample(new Point(0.1, 0.5), 1);
+        let sample2 = new Sample(new Point(0.9, 0.5), 0.5);
         this.interpolator.addSample(sample);
         this.interpolator.addSample(sample2);
     }

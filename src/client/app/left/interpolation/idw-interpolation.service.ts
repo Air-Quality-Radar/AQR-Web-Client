@@ -10,7 +10,7 @@ export class IdwInterpolationService implements InterpolationService {
 
     public weightOfSampleAtPoint(point: Point, samplePoint: Point) {
         let distance = point.distanceTo(samplePoint);
-        if (distance === 0.0) {
+        if (distance === 0) {
             throw RangeError();
         }
 
@@ -18,8 +18,12 @@ export class IdwInterpolationService implements InterpolationService {
     }
 
     public valueAtLocation(location: Point): number {
-        var value = 0.0;
-        var sumOfWeights = 0.0;
+        if (this.samples.length === 0) {
+            return 0;
+        }
+
+        var value = 0;
+        var sumOfWeights = 0;
 
         for (let sample of this.samples) {
             if (location.equals(sample.location)) {
