@@ -48,6 +48,9 @@ module.exports = function (config) {
       // angular2-google-maps dependencies
       { pattern: 'node_modules/angular2-google-maps/**', included: false, watched: false },
 
+      //ng2-charts dependencies
+      { pattern: 'node_modules/ng2-charts/**', included: false, watched: false},
+
       // paths loaded via module imports
       // Angular itself
       { pattern: 'node_modules/@angular/**/*.js', included: false, watched: true },
