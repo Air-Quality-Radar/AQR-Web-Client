@@ -9,7 +9,7 @@ import { GoogleMapsAPIConfig } from './map/map-config';
 import { OverlayComponent } from './overlay/overlay.component';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, AgmCoreModule.forRoot({ apiKey: GoogleMapsAPIConfig.apiKey })],
+  imports: [CommonModule, RouterModule, AgmCoreModule.forRoot({ apiKey: GoogleMapsAPIConfig.apiKey, libraries: ['places'] })],
   declarations: [SearchComponent, MapComponent, OverlayComponent],
   exports: [SearchComponent, MapComponent, OverlayComponent, CommonModule, RouterModule]
 })
