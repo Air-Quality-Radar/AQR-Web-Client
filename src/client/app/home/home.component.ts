@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MapComponent } from '../left/map/map.component';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -9,4 +10,10 @@ import { Component } from '@angular/core';
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.css'],
 })
-export class HomeComponent { }
+export class HomeComponent {
+  @ViewChild('map') private map: MapComponent;
+
+  public handlePlaceUpdated(place: any) {
+    this.map.onPlaceUpdated(place);
+  }
+}

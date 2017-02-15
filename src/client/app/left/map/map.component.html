@@ -1,7 +1,8 @@
 <sebm-google-map
   [latitude]="lat"
   [longitude]="lng"
-  [zoom]="zoom">
+  [zoom]="zoom"
+  (boundsChange)="onBoundsChange($event)">
 
   <sebm-google-map-marker
     *ngFor="let source of dataSourceLocations"

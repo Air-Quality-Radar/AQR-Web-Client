@@ -1,11 +1,11 @@
 <div class = "row">
 <div class="col-md-8">
   <div class="row">
-    <sd-search></sd-search>
+    <sd-search (placeUpdated)="handlePlaceUpdated($event)"></sd-search>
   </div>
   <div class="row">
     <div id="map-container">
-      <sd-map></sd-map>
+      <sd-map #map></sd-map>
       <sd-overlay></sd-overlay>
     </div>
   </div>
