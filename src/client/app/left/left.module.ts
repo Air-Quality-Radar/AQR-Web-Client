@@ -7,10 +7,11 @@ import { SearchComponent } from './search/search.component';
 import { MapComponent } from './map/map.component';
 import { GoogleMapsAPIConfig } from './map/map-config';
 import { OverlayComponent } from './overlay/overlay.component';
+import { OverlayedMapComponent } from './overlayed-map/overlayed-map.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule, AgmCoreModule.forRoot({ apiKey: GoogleMapsAPIConfig.apiKey, libraries: ['places'] })],
-  declarations: [SearchComponent, MapComponent, OverlayComponent],
-  exports: [SearchComponent, MapComponent, OverlayComponent, CommonModule, RouterModule]
+  declarations: [SearchComponent, MapComponent, OverlayComponent, OverlayedMapComponent],
+  exports: [SearchComponent, OverlayedMapComponent, CommonModule, RouterModule]
 })
 export class LeftModule { }
