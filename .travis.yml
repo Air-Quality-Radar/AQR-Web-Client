@@ -1,13 +1,12 @@
 language: node_js
 node_js: stable
-
 sudo: false
 os: linux
-
 cache: yarn
-
 before_script:
-  - export TRAVISCI=1
-
+- export TRAVISCI=1
 script:
-  - npm test && npm run build.prod
+- npm test && npm run build.prod
+notifications:
+  slack:
+    secure: SnE2d1q5e/fYK3rrvVEZPWdoknm8/38Sh+g6Kniej8V3UUV/1ueHSgrpk/dJPUAAe3Cftsy7U9ugh34U4VVG50YGral4PPN5hI6QsEM0gFkhJCNw/tkYwHXclecqj1QJ41uP4qXpXQutFYA1vWmtybTyqAfEXQe8TdTxwW4zfvfR5dlgJRmVUvWmot1wmUEoX+bkHmMvtK86xcx/oPFNrVh8aDlTlLASq1nM6CLsjRfdcYxAlr6tfsw/Y7hnlsD84IOO2Qx1t/RdjBLzKxIK0CN/aDGYbkJQw8zh3yJOEH6vAljK+EZtmZXQljtYRH+azjWnfXftlVtgja1X5acOL6NbzA8768sK6rMRPWhpnYBZjsjBTXz9m3uiEM1bcq/hNEl3leqkUi6iSmJMDGRswHmBKhCnafwzbzNQELs3yWEGnruUlqCuEk4jg9HI0DJngE1qHQPxazNWqANQ0LDftZOeD6c6zfMTKnDFYpxoftOWbbczYmaEzQLmFMCBCLnGII2AkZvp1HemI6d5GjgBEcJsc2GXPGc1y0dZzn/4tXQq4qeRhVk8bda7TMdaGMkzOGwpVPXzZYWWNbScsQBfGJ82zoDiaTgxsh5+x0plTOg2NIAI9y3EZDIMwXiJZ83asoSmA07Xr/AISbX5ktZBU3uRlYeR/G/7iGrmbcJ9VgA=
