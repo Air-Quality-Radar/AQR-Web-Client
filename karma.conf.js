@@ -130,7 +130,7 @@ module.exports = function (config) {
     }
   });
 
-  if (process.env.GITLABCI) {
+  if (process.env.GITLABCI || process.env.TRAVISCI) {
     config.browsers = ['PhantomJS'];
     config.singleRun = true;
     config.browserNoActivityTimeout = 90000; // Note: default value (10000) is not enough
