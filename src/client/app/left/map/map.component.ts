@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { DataSourceLocation } from './data-source';
 import { LatLngBounds } from 'angular2-google-maps/core';
 
@@ -15,11 +15,13 @@ declare var google: any;
 })
 
 export class MapComponent {
-  lat: number = 52.2053449;
-  lng: number = 0.1218367;
-  zoom: number = 13;
+  public lat: number = 52.2053449;
+  public lng: number = 0.1218367;
+  public zoom: number = 13;
 
-  bounds: LatLngBounds;
+  public bounds: LatLngBounds;
+
+  @Output() public boundsChange = new EventEmitter();
 
   dataSourceLocations: DataSourceLocation[] = [
     { lat: 52.202370, lng: 0.124456, name: 'Regent Street / Roadside' },
@@ -30,11 +32,13 @@ export class MapComponent {
     { lat: 52.194334, lng: 0.135041, name: 'Station Road' }
   ];
 
-  public onBoundsChange(newBounds: LatLngBounds) {
+  public onBoundsChange(newBounds: LatLngBounds): void {
+    console.log('bounds change, ' + newBounds.toString());
     this.bounds = newBounds;
+    this.boundsChange.emit(newBounds);
   }
 
-  public onPlaceUpdated(place: any) {
+  public updatePlace(place: any): void {
     // update the map centre to the selected place
     // TODO: only accept places within Cambridge
     this.lat = place.geometry.location.lat();

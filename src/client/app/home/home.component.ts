@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { MapComponent } from '../left/map/map.component';
+import { OverlayedMapComponent } from '../left/overlayed-map/overlayed-map.component';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -11,9 +11,9 @@ import { MapComponent } from '../left/map/map.component';
   styleUrls: ['home.component.css'],
 })
 export class HomeComponent {
-  @ViewChild('map') private map: MapComponent;
+  @ViewChild('overlayedMap') private overlayedMap: OverlayedMapComponent;
 
   public handlePlaceUpdated(place: any) {
-    this.map.onPlaceUpdated(place);
+    this.overlayedMap.updatePlace(place);
   }
 }
