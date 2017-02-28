@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { TableData } from './table-data';
+import { Component } from '@angular/core';
 
 @Component({
   moduleId: module.id,
@@ -7,24 +6,5 @@ import { TableData } from './table-data';
   templateUrl: 'info-table.component.html',
   styleUrls: ['info-table.component.css']
 })
-export class InfoTableComponent {
-  public rows: Array<any> = [];
-  public columns: Array<any> = [
-    {title: 'Index', name: 'index'},
-    {title: 'Value', name: 'value'},
-  ];
-  public length: number = 0;
+export class InfoTableComponent { }
 
-  public config: any = {
-    className: ['table-striped', 'table-bordered']
-  };
-
-  private data: Array<any>;
-
-  public constructor() {
-    this.data = TableData;
-
-    this.length = this.data.length;
-    this.rows = this.data;
-  }
-}

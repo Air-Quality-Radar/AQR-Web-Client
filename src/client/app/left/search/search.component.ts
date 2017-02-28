@@ -38,3 +38,5 @@ export class SearchComponent implements AfterContentInit {
     return this._place;
   }
 }
+
+
