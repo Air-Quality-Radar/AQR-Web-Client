@@ -38,6 +38,8 @@ module.exports = function (config) {
       'node_modules/zone.js/dist/proxy.js',
       'node_modules/zone.js/dist/jasmine-patch.js',
 
+      'node_modules/bootstrap-slider/dist/bootstrap-slider.min.js',
+
       // RxJs.
       { pattern: 'node_modules/rxjs/**/*.js', included: false, watched: false },
       { pattern: 'node_modules/rxjs/**/*.js.map', included: false, watched: false },
@@ -50,6 +52,9 @@ module.exports = function (config) {
 
       //ng2-charts dependencies
       { pattern: 'node_modules/ng2-charts/**', included: false, watched: false},
+
+      //ng2-table dependencies
+      {pattern: 'node_modules/ng2-table/**', included: false, watched: false},
 
       // paths loaded via module imports
       // Angular itself
