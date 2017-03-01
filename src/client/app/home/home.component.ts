@@ -16,4 +16,8 @@ export class HomeComponent {
   public handlePlaceUpdated(place: any) {
     this.overlayedMap.updatePlace(place);
   }
+
+  public handleTimeUpdated(time: any) {
+    console.log(time);
+  }
 }

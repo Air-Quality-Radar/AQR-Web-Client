@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { APP_BASE_HREF } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { async } from '@angular/core/testing';
 import { Route } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
@@ -17,6 +19,7 @@ import { ChartComponent } from './right/chart/chart.component';
 import { MapComponent } from './left/map/map.component';
 import { GoogleMapsAPIConfig } from './left/map/map-config';
 import { OverlayComponent } from './left/overlay/overlay.component';
+import { SliderComponent } from './left/slider/slider.component';
 import { OverlayedMapComponent } from './left/overlayed-map/overlayed-map.component';
 
 export function main() {
@@ -28,10 +31,11 @@ export function main() {
     ];
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [ChartsModule, RouterTestingModule.withRoutes(config), AgmCoreModule.forRoot({
+        imports: [FormsModule, ReactiveFormsModule, ChartsModule,
+          RouterTestingModule.withRoutes(config), AgmCoreModule.forRoot({
         apiKey: GoogleMapsAPIConfig.apiKey
       })],
-        declarations: [ChartComponent, TestComponent, NavbarComponent, AppComponent,
+        declarations: [SliderComponent, ChartComponent, TestComponent, NavbarComponent, AppComponent,
           HomeComponent, SearchComponent, InfoTableComponent, MapComponent, OverlayComponent, OverlayedMapComponent],
         providers: [
           { provide: APP_BASE_HREF, useValue: '/' }

@@ -38,6 +38,8 @@ module.exports = function (config) {
       'node_modules/zone.js/dist/proxy.js',
       'node_modules/zone.js/dist/jasmine-patch.js',
 
+      'node_modules/bootstrap-slider/dist/bootstrap-slider.min.js',
+
       // RxJs.
       { pattern: 'node_modules/rxjs/**/*.js', included: false, watched: false },
       { pattern: 'node_modules/rxjs/**/*.js.map', included: false, watched: false },

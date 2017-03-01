@@ -21,13 +21,16 @@ export class ProjectConfig extends SeedConfig {
     // Add `NPM` third-party libraries to be injected/bundled.
     this.NPM_DEPENDENCIES = [
       ...this.NPM_DEPENDENCIES,
-      // {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
+//       {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
       // {src: 'lodash/lodash.min.js', inject: 'libs'},
-      // { src: 'bootstrap/dist/js/bootstrap.min.js', inject: 'libs' },
+//       { src: 'bootstrap/dist/js/bootstrap.min.js', inject: 'libs' },
       { src: 'chart.js/dist/Chart.min.js', inject: 'libs' },
+      { src: 'bootstrap-slider/dist/bootstrap-slider.min.js', inject: 'libs'},
+
       { src: 'bootstrap/dist/css/bootstrap.min.css', inject: true }, // inject into css section
       { src: 'bootstrap/dist/css/bootstrap-theme.min.css', inject: true }, // inject into css section
       { src: 'bootstrap/dist/css/bootstrap-theme.min.css.map', inject: true }, // inject into css section
+      { src: 'bootstrap-slider/dist/css/bootstrap-slider.min.css', inject: true},
     ];
 
     // Add `local` third-party libraries to be injected/bundled.
@@ -54,7 +57,6 @@ export class ProjectConfig extends SeedConfig {
       //ng2-chart for prod build
       {
         name: 'ng2-charts/*',
-//        path: 'https://npmcdn.com/ng2-charts@1.1.0'
         path: 'node_modules/ng2-charts/bundles/ng2-charts.umd.js'
       },
 

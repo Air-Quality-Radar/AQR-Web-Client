@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   templateUrl: 'info-table.component.html',
   styleUrls: ['info-table.component.css']
 })
-export class InfoTableComponent { }
-
+export class InfoTableComponent {
+}

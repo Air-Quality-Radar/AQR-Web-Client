@@ -1,19 +1,21 @@
 <div class = "row">
-<div class="col-md-8">
-  <div class="row">
+<div class="col-md-8 col-xs-12">
+  <div class="row search">
     <sd-search (placeUpdated)="handlePlaceUpdated($event)"></sd-search>
   </div>
   <div class="row">
     <div id="map-container">
       <sd-overlayed-map #overlayedMap></sd-overlayed-map>
     </div>
+    <sd-slider (timeUpdated)="handleTimeUpdated($event)"></sd-slider>
+  </div>
+  <div class="row">
   </div>
 </div>
-  <div class="col-md-4">
+  <div class="col-md-4 col-xs-12">
     <sd-info-table></sd-info-table>
     <sd-chart></sd-chart>
     <sd-chart></sd-chart>
     <sd-chart></sd-chart>
   </div>
 </div>
-
