@@ -1,7 +1,9 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { OverlayedMapComponent } from '../left/overlayed-map/overlayed-map.component';
+import { InfoTableComponent } from '../right/info-table/info-table.component';
+
 import { RadarAPIClient } from '../shared/radar-api-client/radar-api-client.service';
-import { DataPoint } from '../shared/data-point/data-point';
+import { DataPoint, NumberMeasurement } from '../shared/data-point/data-point';
 import { OverlayDataPoint } from '../left/overlayed-map/overlay-data-point';
 
 /**
@@ -15,6 +17,7 @@ import { OverlayDataPoint } from '../left/overlayed-map/overlay-data-point';
 })
 export class HomeComponent implements OnInit {
   @ViewChild('overlayedMap') private overlayedMap: OverlayedMapComponent;
+  @ViewChild('infoTable') private infoTable: InfoTableComponent;
 
   private dataPoints: DataPoint[];
   private visibleDataPoints: DataPoint[];
@@ -75,6 +78,7 @@ export class HomeComponent implements OnInit {
     if (this.dataPoints) {
       this.visibleDataPoints = this.dataPoints.filter((point) => point.calendar === this.currentCalendar);
       this.updateOverlay();
+      this.updateInfoTable();
     }
   }
 
@@ -94,4 +98,31 @@ export class HomeComponent implements OnInit {
 
     this.overlayedMap.dataPoints = overlayPoints;
   }
+
+  private updateInfoTable() {
+    let pm25 = this.getAverage((dataPoint: DataPoint) => dataPoint.air.pm25);
+    let pm10 = this.getAverage((dataPoint: DataPoint) => dataPoint.air.pm10);
+    let nox = this.getAverage((dataPoint: DataPoint) => dataPoint.air.nox);
+    let temperature = this.getAverage((dataPoint: DataPoint) => null);
+
+    this.infoTable.updateData(pm25, pm10, nox, temperature);
+  }
+
+  private getAverage(propertyFunc: (dataPoint: DataPoint) => NumberMeasurement): NumberMeasurement {
+    let sum = 0;
+    let numSamples = 0;
+    var units: string;
+
+    for (let point of this.visibleDataPoints) {
+      let measurement = propertyFunc(point);
+      if (measurement !== null) {
+        sum += measurement.value;
+        numSamples++;
+        units = measurement.units; // assuming measurements all have same units
+      }
+    }
+
+    return new NumberMeasurement(sum / numSamples, units);
+  }
+
 }

@@ -3,9 +3,8 @@ export interface MapLocation {
     longitude: number;
 }
 
-export interface NumberMeasurement {
-    value: number;
-    units: string;
+export class NumberMeasurement {
+    constructor(public value: number, public units: string) {}
 }
 
 export interface AirDataPoint {
