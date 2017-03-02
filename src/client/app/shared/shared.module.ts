@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { NavbarComponent } from './navbar/navbar.component';
+import { RadarAPIClient } from './radar-api-client/radar-api-client.service';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -13,7 +14,8 @@ import { NavbarComponent } from './navbar/navbar.component';
   imports: [CommonModule, RouterModule],
   declarations: [NavbarComponent],
   exports: [NavbarComponent,
-    CommonModule, FormsModule, RouterModule]
+    CommonModule, FormsModule, RouterModule],
+  providers: [RadarAPIClient]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

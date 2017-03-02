@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterContentInit } from '@angular/core';
 import { OverlayComponent } from '../overlay/overlay.component';
 import { MapComponent } from '../map/map.component';
 import { LatLngBounds } from 'angular2-google-maps/core';
@@ -16,17 +16,14 @@ import { Sample } from '../interpolation/sample';
   templateUrl: 'overlayed-map.component.html',
   styleUrls: ['overlayed-map.component.css']
 })
-export class OverlayedMapComponent {
+export class OverlayedMapComponent implements AfterContentInit {
   @ViewChild('overlay') private overlay: OverlayComponent;
   @ViewChild('map') private map: MapComponent;
 
-  private dataPoints: OverlayDataPoint[];
+  private _dataPoints: OverlayDataPoint[] = [];
 
-  public constructor() {
-    this.dataPoints = [
-      new OverlayDataPoint(52.20, 0.125, 0.8),
-      new OverlayDataPoint(52.22, 0.125, 0.2)
-    ];
+  public ngAfterContentInit(): void {
+    this.updateOverlayData();
   }
 
   public updatePlace(place: any): void {
@@ -35,6 +32,24 @@ export class OverlayedMapComponent {
 
   public handleMapBoundsChange(newBounds: LatLngBounds): void {
     console.log('handling map bounds change');
+    this.updateOverlayData();
+  }
+
+  public get dataPoints(): OverlayDataPoint[] {
+    return this._dataPoints;
+  }
+
+  public set dataPoints(dataPoints: OverlayDataPoint[]) {
+    this._dataPoints = dataPoints;
+    this.updateOverlayData();
+  }
+
+  private updateOverlayData(): void {
+    if (!this.map.bounds) {
+      // Not loaded yet, will load on AfterContentInit event
+      return;
+    }
+
     var samples: Sample[] = [];
     for (let dataPoint of this.dataPoints) {
       samples.push(this.sampleForDataPoint(dataPoint));

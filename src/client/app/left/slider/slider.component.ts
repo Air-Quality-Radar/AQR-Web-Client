@@ -10,46 +10,40 @@ declare var Slider: any;
 })
 
 export class SliderComponent implements AfterContentInit {
-  @Output() public timeUpdated = new EventEmitter();
+  @Output() public hourChanged = new EventEmitter();
 
-  @ViewChild('slider') slider: ElementRef;
+  private _selectedHour: number = 0;
 
-  public disabled: boolean = false;
-  public sliderVal: number = 0;
-  public someRange2: number[] = [10, 10];
+  @ViewChild('slider') private slider: ElementRef;
 
-  public sliderConfig: any = {
-    behaviour: 'drag',
-    connect: true,
-    margin: 1,
-    limit: 5,
-    range: {
-      min: 0,
-      max: 20
-    },
-    pips: {
-      mode: 'steps',
-      density: 5
-    }
-  };
-
-  changeSomeValue(value: number) {
-    this.sliderVal = this.sliderVal + value;
-  }
-
-  onSliderChange(value: any) {
-    console.log(value);
-  }
-
-  ngAfterContentInit() {
+  public ngAfterContentInit() {
     let slider = new Slider(this.slider.nativeElement, {});
-    slider.on('change', function(sliderVal: any) {
-      sliderVal = sliderVal.newValue;
-      if(sliderVal === 24)
-        sliderVal = 0;
-      var sliderValue = ('0' + sliderVal).slice(-2) + ':00';
-      document.getElementById('sliderValue').textContent = sliderValue;
+    slider.on('change', (sliderVal: any) => {
+      let newValue: number = sliderVal.newValue;
+      if (newValue !== this._selectedHour) {
+        this.setSelectedHour(newValue);
+        this.valueChanged(sliderVal.newValue);
+      }
     });
-    console.log(slider);
+  }
+
+  public get selectedHour(): number {
+    return this._selectedHour;
+  }
+
+  private setSelectedHour(newValue: number) {
+    this._selectedHour = newValue;
+  }
+
+  private valueChanged(newValue: number) {
+    this.updateDisplayValue();
+    console.log(newValue);
+    this.hourChanged.emit(newValue);
+  }
+
+  private updateDisplayValue() {
+    let displayValue: number = this.selectedHour % 24;
+    let displayText = ('0' + displayValue).slice(-2) + ':00';
+    document.getElementById('sliderValue').textContent = displayText;
   }
 }
