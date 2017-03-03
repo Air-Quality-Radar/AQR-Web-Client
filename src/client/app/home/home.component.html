@@ -7,9 +7,10 @@
     <div id="map-container">
       <sd-overlayed-map #overlayedMap></sd-overlayed-map>
     </div>
+    <div class="row date-picker">
+      <sd-date-picker (datePicked)="handleDatePicked($event)" [maxDate]="maxDateAvailable"></sd-date-picker>
+    </div>
     <sd-slider (hourChanged)="handleHourChanged($event)"></sd-slider>
-  </div>
-  <div class="row">
   </div>
 </div>
   <div class="col-md-4 col-xs-12">

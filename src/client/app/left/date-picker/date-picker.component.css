@@ -1,0 +1,14 @@
+.full button span {
+  background-color: limegreen;
+  border-radius: 32px;
+  color: black;
+}
+.partially button span {
+  background-color: orange;
+  border-radius: 32px;
+  color: black;
+}
+
+div.date-picker {
+  padding-left: 15px;
+}

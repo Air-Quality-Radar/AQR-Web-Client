@@ -11,11 +11,14 @@ import { GoogleMapsAPIConfig } from './map/map-config';
 import { OverlayComponent } from './overlay/overlay.component';
 import { SliderComponent } from './slider/slider.component';
 import { OverlayedMapComponent } from './overlayed-map/overlayed-map.component';
+import { DatePickerComponent } from './date-picker/date-picker.component';
 
 @NgModule({
   imports: [FormsModule, ReactiveFormsModule, CommonModule,
   RouterModule, AgmCoreModule.forRoot({ apiKey: GoogleMapsAPIConfig.apiKey, libraries: ['places'] })],
-  declarations: [SliderComponent, SearchComponent, MapComponent, OverlayComponent, OverlayedMapComponent],
-  exports: [SliderComponent, SearchComponent, MapComponent, OverlayedMapComponent, OverlayComponent, CommonModule, RouterModule]
+  declarations: [SliderComponent, SearchComponent, DatePickerComponent,
+    MapComponent, OverlayComponent, OverlayedMapComponent],
+  exports: [SliderComponent, SearchComponent, MapComponent, DatePickerComponent,
+    OverlayedMapComponent, OverlayComponent, CommonModule, RouterModule]
 })
 export class LeftModule { }

@@ -37,7 +37,6 @@ export class SliderComponent implements AfterContentInit {
 
   private valueChanged(newValue: number) {
     this.updateDisplayValue();
-    console.log(newValue);
     this.hourChanged.emit(newValue);
   }
 

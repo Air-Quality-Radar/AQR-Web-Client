@@ -16,21 +16,28 @@ import { OverlayDataPoint } from '../left/overlayed-map/overlay-data-point';
   styleUrls: ['home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  public maxDateAvailable: string = '2017-03-06';
+
   @ViewChild('overlayedMap') private overlayedMap: OverlayedMapComponent;
   @ViewChild('infoTable') private infoTable: InfoTableComponent;
 
   private dataPoints: DataPoint[];
   private visibleDataPoints: DataPoint[];
 
-  private currentCalendar: number;
+  private startOfDay: number;
+  private currentHour: number;
 
   private dataPointScaleMin: number;
   private dataPointScaleMax: number;
 
+  private _maxDateAvailable: number;
+
   constructor(private apiClient: RadarAPIClient) {}
 
   ngOnInit() {
-    this.currentCalendar = 1488279600000;
+    this.currentHour = 3;
+    this.startOfDay = 1488279600000;
+    this._maxDateAvailable = 1488279600000;
     this.subscribeToAPIClient();
   }
 
@@ -38,11 +45,13 @@ export class HomeComponent implements OnInit {
     this.overlayedMap.updatePlace(place);
   }
 
-  public handleHourChanged(newHour: any) {
-    let baseCalendar = 1488153600000;
-    let numMillisecondsInHour = 60*60*1000;
+  public handleDatePicked(date: any) {
+    this.startOfDay = new Date(date).getTime();
+    this.handleHourChanged(this.currentHour);
+  }
 
-    this.currentCalendar = baseCalendar + numMillisecondsInHour * newHour;
+  public handleHourChanged(newHour: any) {
+    this.currentHour = newHour;
     this.updateVisibleData();
   }
 
@@ -68,15 +77,22 @@ export class HomeComponent implements OnInit {
         maxNox = Math.max(maxNox, nox);
         minNox = Math.min(minNox, nox);
       }
+      if (point.calendar !== null) {
+        this._maxDateAvailable = Math.max(this._maxDateAvailable, new Date(point.calendar).getTime());
+      }
     }
 
+    let date: Date = new Date(this._maxDateAvailable);
+    this.maxDateAvailable = date.getFullYear().toString() + '-' + this._padding(date.getMonth() + 1) + '-' + this._padding(date.getDate());
     this.dataPointScaleMin = minNox;
     this.dataPointScaleMax = maxNox;
   }
 
   private updateVisibleData() {
+    let numMillisecondsInHour = 60 * 60 * 1000;
+    let currentCalendar = this.startOfDay + numMillisecondsInHour * this.currentHour;
     if (this.dataPoints) {
-      this.visibleDataPoints = this.dataPoints.filter((point) => point.calendar === this.currentCalendar);
+      this.visibleDataPoints = this.dataPoints.filter((point) => point.calendar === currentCalendar);
       this.updateOverlay();
       this.updateInfoTable();
     }
@@ -95,7 +111,6 @@ export class HomeComponent implements OnInit {
         );
       }
     }
-
     this.overlayedMap.dataPoints = overlayPoints;
   }
 
@@ -121,8 +136,14 @@ export class HomeComponent implements OnInit {
         units = measurement.units; // assuming measurements all have same units
       }
     }
-
     return new NumberMeasurement(sum / numSamples, units);
   }
 
+  private _padding(n: number) {
+    console.log(n);
+    if(n < 10)
+      return '0' + n.toString();
+    else
+      return n.toString();
+  }
 }

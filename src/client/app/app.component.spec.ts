@@ -21,6 +21,7 @@ import { GoogleMapsAPIConfig } from './left/map/map-config';
 import { OverlayComponent } from './left/overlay/overlay.component';
 import { SliderComponent } from './left/slider/slider.component';
 import { OverlayedMapComponent } from './left/overlayed-map/overlayed-map.component';
+import { DatePickerComponent } from './left/date-picker/date-picker.component';
 
 export function main() {
 
@@ -36,7 +37,8 @@ export function main() {
         apiKey: GoogleMapsAPIConfig.apiKey
       })],
         declarations: [SliderComponent, ChartComponent, TestComponent, NavbarComponent, AppComponent,
-          HomeComponent, SearchComponent, InfoTableComponent, MapComponent, OverlayComponent, OverlayedMapComponent],
+          HomeComponent, SearchComponent, InfoTableComponent, DatePickerComponent,
+          MapComponent, OverlayComponent, OverlayedMapComponent],
         providers: [
           { provide: APP_BASE_HREF, useValue: '/' }
         ]
