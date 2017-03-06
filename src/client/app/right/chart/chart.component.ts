@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 @Component({
   moduleId: module.id,
@@ -6,16 +6,23 @@ import { Component } from '@angular/core';
   templateUrl: 'chart.component.html',
   styleUrls: ['chart.component.css']
 })
-export class ChartComponent {
+export class ChartComponent implements OnChanges {
+  @Input() public lineChartTitle: string;
   // lineChart
-  public lineChartData:Array<any> = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
+  public lineChartData: Array<any> = [
+    {
+      data: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    }
   ];
-  public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChartOptions:any = {
-    responsive: true
+  public lineChartLabels: Array<any> = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00', '24:00'];
+  public lineChartOptions: any = {
+    responsive: true,
+    title: {
+      display: true,
+      text: this.lineChartTitle
+    }
   };
-  public lineChartColors:Array<any> = [
+  public lineChartColors: Array<any> = [
     { // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
       borderColor: 'rgba(148,159,177,1)',
@@ -25,26 +32,14 @@ export class ChartComponent {
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     }
   ];
-  public lineChartLegend:boolean = true;
-  public lineChartType:string = 'line';
+  public lineChartLegend: boolean = false;
+  public lineChartType: string = 'line';
 
-  public randomize():void {
-    let _lineChartData:Array<any> = new Array(this.lineChartData.length);
-    for (let i = 0; i < this.lineChartData.length; i++) {
-      _lineChartData[i] = {data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label};
-      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-        _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
-      }
-    }
-    this.lineChartData = _lineChartData;
+  public updateData(chartData: Array<any>) {
+    this.lineChartData = chartData.slice();
   }
 
-  // events
-  public chartClicked(e:any):void {
-    console.log(e);
-  }
-
-  public chartHovered(e:any):void {
-    console.log(e);
+  ngOnChanges() {
+    this.lineChartOptions.title.text = this.lineChartTitle;
   }
 }
