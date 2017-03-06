@@ -70,6 +70,9 @@ export class HomeComponent implements AfterContentInit {
   }
 
   private getData() {
+    // Gets data around this.currentDate.  The exact number of days around is determined
+    // by the backend, but this should include at least the next day when possible — i.e. not
+    // too far into the future to predict
     this.apiClient.getDataPoints(this.currentDate).subscribe(
       dataPoints => {
         this.dataPoints = dataPoints;

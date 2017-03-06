@@ -19,7 +19,7 @@ export class SliderComponent implements AfterContentInit {
   @ViewChild('slider') private sliderElement: ElementRef;
   private slider: any;
 
-  public ngAfterContentInit() {
+  public ngAfterContentInit(): void {
     this.slider = new Slider(this.sliderElement.nativeElement, {});
     this.slider.on('change', (sliderVal: any) => {
       let newValue: number = sliderVal.newValue;
@@ -32,7 +32,7 @@ export class SliderComponent implements AfterContentInit {
     this.valueChanged(this._selectedHour);
   }
 
-  public get selectedHour() {
+  public get selectedHour(): number {
     return this._selectedHour;
   }
 
@@ -44,12 +44,12 @@ export class SliderComponent implements AfterContentInit {
     this._selectedHour = newValue;
   }
 
-  private valueChanged(newValue: number) {
+  private valueChanged(newValue: number): void {
     this.updateDisplayValue();
     this.hourChanged.emit(newValue);
   }
 
-  private updateDisplayValue() {
+  private updateDisplayValue(): void {
     let displayValue: number = this.selectedHour % 24;
     let displayText = ('0' + displayValue).slice(-2) + ':00';
     this.sliderTimeString = displayText;
