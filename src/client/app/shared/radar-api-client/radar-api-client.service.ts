@@ -6,15 +6,13 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class RadarAPIClient {
   private baseUrl = 'http://aqrradarapi.azurewebsites.net/air-quality/';
-  private endpointUrl = this.baseUrl + '2017-03-01';
 
-  constructor (private http: Http) {
-    // todo: remove
-    this.endpointUrl = 'assets/sample_data.json';
-  }
+  constructor (private http: Http) {}
 
-  public getDataPoints(): Observable<DataPoint[]> {
-    return this.http.get(this.endpointUrl)
+  public getDataPoints(date: string): Observable<DataPoint[]> {
+    let endpointUrl = this.baseUrl + date;
+
+    return this.http.get(endpointUrl)
                     .map(this.extractData)
                     .catch(this.handleError);
   }

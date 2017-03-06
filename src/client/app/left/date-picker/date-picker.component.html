@@ -2,6 +2,6 @@
   <br/>
   <div class="col-md-3">Please select the date: </div>
   <div class="col-md-9">
-    <input type="date" min="2011-01-01" max={{maxDate}} value="2017-02-27" (change)="datePickerUpdated($event)"/>
+    <input type="date" min="2011-01-01" max={{maxDate}} value="{{dateValue}}" (change)="datePickerUpdated($event)"/>
   </div>
 </div>

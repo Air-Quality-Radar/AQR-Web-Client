@@ -20,4 +20,5 @@ export interface DataPoint {
     location: MapLocation;
     air: AirDataPoint;
     weather: WeatherDataPoint;
+    predicted: boolean;
 }

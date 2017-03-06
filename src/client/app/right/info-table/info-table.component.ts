@@ -16,14 +16,19 @@ export class InfoTableComponent {
   private noDataString = 'No data';
 
   // this is a single method as it only makes sense to update all the fields
-  public updateData(pm25: NumberMeasurement, pm10: NumberMeasurement, nox: NumberMeasurement, temperature: NumberMeasurement) {
-    this.pm25DisplayValue = this.displayValue(pm25);
-    this.pm10DisplayValue = this.displayValue(pm10);
-    this.noxDisplayValue = this.displayValue(nox);
-    this.temperatureDisplayValue = this.displayValue(temperature);
+  public updateData(pm25: NumberMeasurement, pm10: NumberMeasurement, nox: NumberMeasurement,
+                    temperature: NumberMeasurement, isPrediction: boolean) {
+    this.pm25DisplayValue = this.displayValue(pm25, isPrediction);
+    this.pm10DisplayValue = this.displayValue(pm10, isPrediction);
+    this.noxDisplayValue = this.displayValue(nox, isPrediction);
+    this.temperatureDisplayValue = this.displayValue(temperature, isPrediction);
   }
 
-  private displayValue(measurement: NumberMeasurement): string {
-    return (Number.isNaN(measurement.value)) ? this.noDataString : measurement.value.toString() + ' ' + measurement.units;
+  private displayValue(measurement: NumberMeasurement, isPrediction: boolean): string {
+    if (Number.isNaN(measurement.value)) {
+      return this.noDataString;
+    }
+
+    return measurement.value.toFixed(3) + ' ' + measurement.units + (isPrediction ? ' (predicted)' : '');
   }
 }

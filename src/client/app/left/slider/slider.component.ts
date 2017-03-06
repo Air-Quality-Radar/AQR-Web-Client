@@ -12,26 +12,35 @@ declare var Slider: any;
 export class SliderComponent implements AfterContentInit {
   @Output() public hourChanged = new EventEmitter();
 
-  private _selectedHour: number = 0;
+  public sliderTimeString: string;
 
-  @ViewChild('slider') private slider: ElementRef;
+  private _selectedHour: number;
+
+  @ViewChild('slider') private sliderElement: ElementRef;
+  private slider: any;
 
   public ngAfterContentInit() {
-    let slider = new Slider(this.slider.nativeElement, {});
-    slider.on('change', (sliderVal: any) => {
+    this.slider = new Slider(this.sliderElement.nativeElement, {});
+    this.slider.on('change', (sliderVal: any) => {
       let newValue: number = sliderVal.newValue;
       if (newValue !== this._selectedHour) {
-        this.setSelectedHour(newValue);
+        this._selectedHour = newValue;
         this.valueChanged(sliderVal.newValue);
       }
     });
+    this.slider.setValue(this._selectedHour);
+    this.valueChanged(this._selectedHour);
   }
 
-  public get selectedHour(): number {
+  public get selectedHour() {
     return this._selectedHour;
   }
 
-  private setSelectedHour(newValue: number) {
+  public set selectedHour(newValue: number) {
+    if (this.slider) {
+      this.slider.setValue(newValue);
+      this.valueChanged(newValue);
+    }
     this._selectedHour = newValue;
   }
 
@@ -43,6 +52,6 @@ export class SliderComponent implements AfterContentInit {
   private updateDisplayValue() {
     let displayValue: number = this.selectedHour % 24;
     let displayText = ('0' + displayValue).slice(-2) + ':00';
-    document.getElementById('sliderValue').textContent = displayText;
+    this.sliderTimeString = displayText;
   }
 }

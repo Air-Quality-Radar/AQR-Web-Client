@@ -1,10 +1,13 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, AfterContentInit } from '@angular/core';
 import { OverlayedMapComponent } from '../left/overlayed-map/overlayed-map.component';
 import { InfoTableComponent } from '../right/info-table/info-table.component';
 
 import { RadarAPIClient } from '../shared/radar-api-client/radar-api-client.service';
 import { DataPoint, NumberMeasurement } from '../shared/data-point/data-point';
 import { OverlayDataPoint } from '../left/overlayed-map/overlay-data-point';
+import { DateUtils } from '../shared/date-utils/date-utils';
+import { DatePickerComponent } from '../left/date-picker/date-picker.component';
+import { SliderComponent } from '../left/slider/slider.component';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -15,39 +18,44 @@ import { OverlayDataPoint } from '../left/overlayed-map/overlay-data-point';
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements AfterContentInit {
   public maxDateAvailable: string = '2017-03-06';
 
   @ViewChild('overlayedMap') private overlayedMap: OverlayedMapComponent;
   @ViewChild('infoTable') private infoTable: InfoTableComponent;
+  @ViewChild('datePicker') private datePicker: DatePickerComponent;
+  @ViewChild('slider') private slider: SliderComponent;
 
   private dataPoints: DataPoint[];
   private visibleDataPoints: DataPoint[];
 
-  private startOfDay: number;
+  private currentDate: string;
   private currentHour: number;
 
   private dataPointScaleMin: number;
   private dataPointScaleMax: number;
 
-  private _maxDateAvailable: number;
-
   constructor(private apiClient: RadarAPIClient) {}
 
-  ngOnInit() {
-    this.currentHour = 3;
-    this.startOfDay = 1488279600000;
-    this._maxDateAvailable = 1488279600000;
-    this.subscribeToAPIClient();
+  ngAfterContentInit() {
+    let now = new Date();
+
+    this.currentHour = now.getHours();
+    this.currentDate = DateUtils.DateStringForDate(now);
+
+    this.slider.selectedHour = this.currentHour;
+    this.datePicker.dateValue = this.currentDate;
+    this.getData();
   }
 
   public handlePlaceUpdated(place: any) {
     this.overlayedMap.updatePlace(place);
   }
 
-  public handleDatePicked(date: any) {
-    this.startOfDay = new Date(date).getTime();
-    this.handleHourChanged(this.currentHour);
+  public handleDatePicked(dateString: string) {
+    this.currentDate = dateString;
+    this.getData();
+    this.updateVisibleData();
   }
 
   public handleHourChanged(newHour: any) {
@@ -55,8 +63,8 @@ export class HomeComponent implements OnInit {
     this.updateVisibleData();
   }
 
-  private subscribeToAPIClient() {
-    this.apiClient.getDataPoints().subscribe(
+  private getData() {
+    this.apiClient.getDataPoints(this.currentDate).subscribe(
       dataPoints => {
         this.dataPoints = dataPoints;
         this.updateDataScale();
@@ -78,21 +86,22 @@ export class HomeComponent implements OnInit {
         minNox = Math.min(minNox, nox);
       }
       if (point.calendar !== null) {
-        this._maxDateAvailable = Math.max(this._maxDateAvailable, new Date(point.calendar).getTime());
+        let maxDate = new Date(this.maxDateAvailable);
+        this.maxDateAvailable = DateUtils.DateStringForDate(new Date(Math.max(maxDate.getTime(), new Date(point.calendar).getTime())));
       }
     }
 
-    let date: Date = new Date(this._maxDateAvailable);
-    this.maxDateAvailable = date.getFullYear().toString() + '-' + this._padding(date.getMonth() + 1) + '-' + this._padding(date.getDate());
     this.dataPointScaleMin = minNox;
     this.dataPointScaleMax = maxNox;
   }
 
   private updateVisibleData() {
     let numMillisecondsInHour = 60 * 60 * 1000;
-    let currentCalendar = this.startOfDay + numMillisecondsInHour * this.currentHour;
+    let visibleDate: Date = DateUtils.StartOfDayForDate(new Date(this.currentDate));
+    visibleDate.setHours(this.currentHour);
+
     if (this.dataPoints) {
-      this.visibleDataPoints = this.dataPoints.filter((point) => point.calendar === currentCalendar);
+      this.visibleDataPoints = this.dataPoints.filter((point) => point.calendar === visibleDate.getTime());
       this.updateOverlay();
       this.updateInfoTable();
     }
@@ -120,7 +129,9 @@ export class HomeComponent implements OnInit {
     let nox = this.getAverage((dataPoint: DataPoint) => dataPoint.air.nox);
     let temperature = this.getAverage((dataPoint: DataPoint) => null);
 
-    this.infoTable.updateData(pm25, pm10, nox, temperature);
+    let isPrediction = this.visibleDataPoints.some((dataPoint: DataPoint) => dataPoint.predicted);
+
+    this.infoTable.updateData(pm25, pm10, nox, temperature, isPrediction);
   }
 
   private getAverage(propertyFunc: (dataPoint: DataPoint) => NumberMeasurement): NumberMeasurement {
@@ -137,13 +148,5 @@ export class HomeComponent implements OnInit {
       }
     }
     return new NumberMeasurement(sum / numSamples, units);
-  }
-
-  private _padding(n: number) {
-    console.log(n);
-    if(n < 10)
-      return '0' + n.toString();
-    else
-      return n.toString();
   }
 }

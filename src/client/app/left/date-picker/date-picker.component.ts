@@ -11,6 +11,8 @@ export class DatePickerComponent {
   @Output() public datePicked = new EventEmitter();
   @Input() public maxDate: string;
 
+  public dateValue: string;
+
   public constructor() {
     this.maxDate = '2017-03-04';
   }

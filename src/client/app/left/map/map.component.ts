@@ -17,7 +17,7 @@ declare var google: any;
 export class MapComponent {
   public lat: number = 52.2053449;
   public lng: number = 0.1218367;
-  public zoom: number = 13;
+  public zoom: number = 14;
 
   public bounds: LatLngBounds;
 
