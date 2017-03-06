@@ -137,7 +137,7 @@ export class HomeComponent implements AfterContentInit {
     let pm25 = this.getAverage(this.visibleDataPoints, (dataPoint: DataPoint) => dataPoint.air.pm25);
     let pm10 = this.getAverage(this.visibleDataPoints, (dataPoint: DataPoint) => dataPoint.air.pm10);
     let nox = this.getAverage(this.visibleDataPoints, (dataPoint: DataPoint) => dataPoint.air.nox);
-    let temperature = this.getAverage(this.visibleDataPoints, (dataPoint: DataPoint) => null);
+    let temperature = this.getAverage(this.visibleDataPoints, (dataPoint: DataPoint) => dataPoint.weather.temperature);
 
     let isPrediction = this.visibleDataPoints.some((dataPoint: DataPoint) => dataPoint.predicted);
 
