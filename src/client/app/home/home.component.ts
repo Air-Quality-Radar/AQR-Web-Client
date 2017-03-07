@@ -9,6 +9,7 @@ import { OverlayDataPoint } from '../left/overlayed-map/overlay-data-point';
 import { DateUtils } from '../shared/date-utils/date-utils';
 import { DatePickerComponent } from '../left/date-picker/date-picker.component';
 import { SliderComponent } from '../left/slider/slider.component';
+import { PiwikTracker } from '../shared/piwik/piwik.service';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -55,16 +56,23 @@ export class HomeComponent implements AfterContentInit {
   }
 
   public handlePlaceUpdated(place: any) {
+    PiwikTracker.TrackEvent('placeSearched', place.name, place.geometry.location.lng(), place.geometry.location.lat());
     this.overlayedMap.updatePlace(place);
   }
 
   public handleDatePicked(dateString: string) {
+    if (this.currentDate !== dateString) {
+      PiwikTracker.TrackEvent('dateChanged', dateString);
+    }
     this.currentDate = dateString;
     this.getData();
     this.updateVisibleData();
   }
 
   public handleHourChanged(newHour: any) {
+    if (this.currentHour !== newHour) {
+      PiwikTracker.TrackEvent('hourChanged', newHour);
+    }
     this.currentHour = newHour;
     this.updateVisibleData();
   }
