@@ -38,8 +38,6 @@ export class OverlayComponent implements AfterViewInit {
       this.interpolator.addSample(sample);
     }
 
-    console.log('Samples:' + samples);
-
     this.draw();
   }
 

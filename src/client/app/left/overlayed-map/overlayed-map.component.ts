@@ -31,7 +31,6 @@ export class OverlayedMapComponent implements AfterContentInit {
   }
 
   public handleMapBoundsChange(newBounds: LatLngBounds): void {
-    console.log('handling map bounds change');
     this.updateOverlayData();
   }
 

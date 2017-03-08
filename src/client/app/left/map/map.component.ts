@@ -33,7 +33,6 @@ export class MapComponent {
   ];
 
   public onBoundsChange(newBounds: LatLngBounds): void {
-    console.log('bounds change, ' + newBounds.toString());
     this.bounds = newBounds;
     this.boundsChange.emit(newBounds);
   }

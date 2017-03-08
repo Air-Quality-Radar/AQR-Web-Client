@@ -17,24 +17,25 @@ export class SearchComponent implements AfterContentInit {
 
   @ViewChild('searchInput') private searchInputRef: ElementRef;
 
-  private _place: any;
-
-  public constructor(private _loader: MapsAPILoader) {
-
-  }
+  public constructor(private _loader: MapsAPILoader) {}
 
   public ngAfterContentInit() {
     this._loader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.searchInputRef.nativeElement, {});
+      let options = {
+        bounds: {
+          west: 0.04,
+          east: 0.17,
+          north: 52.24,
+          south: 52.15
+        },
+        strictBounds: true
+      };
+
+      let autocomplete = new google.maps.places.Autocomplete(this.searchInputRef.nativeElement, options);
       google.maps.event.addListener(autocomplete, 'place_changed', () => {
         let place = autocomplete.getPlace();
-        this._place = place;
         this.placeUpdated.emit(place);
       });
     });
-  }
-
-  public get place() {
-    return this._place;
   }
 }
