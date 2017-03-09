@@ -1,7 +1,7 @@
-
 :host {
   display: block;
-  padding: 2em;
+  padding: 1em 0;
+  overflow: hidden;
 }
 
 #map-container {
@@ -11,4 +11,8 @@
 
 div.search {
   margin-bottom: 15px;
+}
+
+.date-picker {
+  margin-top: 1em;
 }

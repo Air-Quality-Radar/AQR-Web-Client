@@ -1,7 +1,8 @@
-<div class="row date-picker">
-  <br/>
-  <div class="col-md-3">Please select the date: </div>
-  <div class="col-md-9">
-    <input type="date" min="2011-01-01" max={{maxDate}} value="{{dateValue}}" (change)="datePickerUpdated($event)"/>
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="date-picker-input" class="control-label col-md-3">Current date selected:</label>
+    <div class="col-md-6">
+      <input id="date-picker-input" type="date" class="form-control" min="2011-01-01" max={{maxDate}} value="{{dateValue}}" (change)="datePickerUpdated($event)"/>
+    </div>
   </div>
-</div>
+</form>

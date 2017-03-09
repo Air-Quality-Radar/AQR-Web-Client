@@ -20,7 +20,16 @@ export class SliderComponent implements AfterContentInit {
   private slider: any;
 
   public ngAfterContentInit(): void {
-    this.slider = new Slider(this.sliderElement.nativeElement, {});
+    var sliderConfig = {};
+
+    if (window.innerWidth <= 800) {
+      sliderConfig = {
+        ticks: [0, 6, 12, 18, 24],
+        ticks_labels: ['00:00', '06:00', '12:00', '18:00', '00:00']
+      };
+    }
+
+    this.slider = new Slider(this.sliderElement.nativeElement, sliderConfig);
     this.slider.on('change', (sliderVal: any) => {
       let newValue: number = sliderVal.newValue;
       if (newValue !== this._selectedHour) {
