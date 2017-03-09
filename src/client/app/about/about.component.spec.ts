@@ -18,7 +18,7 @@ export function main() {
       });
     });
 
-    it('should work',
+    it('should have "How to use" header',
       async(() => {
         TestBed
           .compileComponents()
@@ -26,7 +26,7 @@ export function main() {
             let fixture = TestBed.createComponent(TestComponent);
             let aboutDOMEl = fixture.debugElement.children[0].nativeElement;
 
-              expect(aboutDOMEl.querySelectorAll('h3')[0].textContent).toEqual('How to Use');
+              expect(aboutDOMEl.querySelectorAll('h3')[0].textContent).toEqual('How to use');
           });
         }));
     });
